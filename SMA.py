@@ -335,7 +335,7 @@ def redis_hget_str(redis_client, hash_key, field_key, default=''):
     try:
         value = redis_client.hget(hash_key, field_key)
         if value is not None:
-            return value.decode('utf-8')
+            return value.decode('utf-8', errors='ignore')
         return default
     except Exception as e:
         print(f"Error reading {hash_key}:{field_key} - {e}")
